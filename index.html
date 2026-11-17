@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,19 +13,13 @@
   --bg: #050806;
   --panel: #0c1410;
   --green: #20d878;
-  --green-dark: #0e7540;
   --text: #f1f5f2;
   --muted: #9aa9a0;
   --border: #20372a;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -36,13 +29,10 @@ body {
   min-height: 100vh;
 }
 
-button, input {
-  font: inherit;
-}
+button, input { font: inherit; }
 
-/* Cabecera con logotipo oficial */
 header {
-  padding: 36px 18px 28px;
+  padding: 32px 18px 25px;
   text-align: center;
   border-bottom: 1px solid var(--border);
   background: linear-gradient(180deg, #08120c, #050806);
@@ -54,74 +44,82 @@ header {
   letter-spacing: 3px;
   font-weight: 800;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
-.logo-wrapper {
+.logo-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 4px auto;
+  min-height: 90px;
 }
 
 .logo {
   width: min(100%, 480px);
-  max-height: 195px;
+  max-height: 185px;
   object-fit: contain;
-  mix-blend-mode: lighten;
-  filter: drop-shadow(0 0 24px rgba(22, 201, 91, 0.35));
+  filter: drop-shadow(0 0 22px #16c95b66);
+}
+
+.logo-fallback {
+  display: none;
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: clamp(28px, 7vw, 52px);
+  letter-spacing: 3px;
+  background: linear-gradient(180deg, #ffffff 15%, #9ca8a1 50%, #20d878 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 18px #16c95b55);
+  margin: 6px 0;
 }
 
 header h1 {
   font-family: 'Cinzel', serif;
-  font-size: clamp(22px, 5vw, 38px);
+  font-size: clamp(20px, 4.5vw, 32px);
   margin: 12px 0 8px;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
 header p {
   color: var(--muted);
   font-size: 13px;
-  max-width: 620px;
+  max-width: 600px;
   line-height: 1.65;
   margin: auto;
 }
 
 .container {
-  width: min(1060px, 94%);
-  margin: 26px auto 85px;
+  width: min(1050px, 94%);
+  margin: 24px auto 85px;
 }
 
-/* Paneles de progreso y filtros */
 .progress, .filters {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: 18px;
   margin-bottom: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
 
 .progress-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 13px;
 }
 
 #percent {
   color: var(--green);
   font-weight: 800;
-  font-size: 24px;
-  font-variant-numeric: tabular-nums;
+  font-size: 23px;
 }
 
 .progress-track {
-  height: 11px;
+  height: 10px;
   background: #17251c;
   border-radius: 20px;
   overflow: hidden;
-  border: 1px solid #1f3327;
 }
 
 #progressBar {
@@ -129,8 +127,7 @@ header p {
   width: 0%;
   background: linear-gradient(90deg, #0d9f55, #4cff9b);
   border-radius: 20px;
-  transition: width 0.4s ease-out;
-  box-shadow: 0 0 12px rgba(32, 216, 120, 0.45);
+  transition: width 0.35s ease;
 }
 
 .progress-actions {
@@ -147,162 +144,80 @@ header p {
   color: #ffaaaa;
   border: 1px solid #633333;
   border-radius: 9px;
-  padding: 7px 12px;
-  font-size: 11px;
-  font-weight: 600;
+  padding: 7px 11px;
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
-}
-
-.reset:hover {
-  background: #3d1919;
-  border-color: #994444;
-}
-
-.search-wrap {
-  position: relative;
-  margin-bottom: 16px;
 }
 
 .search {
   width: 100%;
-  padding: 13px 38px 13px 14px;
+  padding: 14px;
   border-radius: 12px;
   border: 1px solid var(--border);
   background: #050a07;
   color: #ffffff;
-  font-size: 13px;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 16px;
 }
 
-.search:focus {
-  border-color: var(--green);
-  box-shadow: 0 0 0 3px rgba(32, 216, 120, 0.12);
-}
-
-.clear-search {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #14221a;
-  color: var(--muted);
-  border: 1px solid var(--border);
-  border-radius: 7px;
-  width: 24px;
-  height: 24px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.clear-search:hover {
-  color: var(--text);
-  border-color: var(--green);
-}
-
-.filters-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-}
+.search:focus { border-color: var(--green); }
 
 .filter-label {
   font-size: 10px;
   color: var(--muted);
   font-weight: 800;
   letter-spacing: 1.5px;
-  margin: 0 0 8px;
+  margin: 12px 0 8px;
 }
 
 .buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 7px;
 }
 
 .filter-btn {
   border: 1px solid var(--border);
   background: #09110c;
   color: #aebbb2;
-  padding: 8px 11px;
+  padding: 9px 12px;
   border-radius: 10px;
   font-size: 11px;
-  font-weight: 500;
   cursor: pointer;
-  transition: all 0.18s ease;
 }
 
 .filter-btn.active, .filter-btn:hover {
   color: var(--green);
   border-color: var(--green);
   background: #12301f;
-  font-weight: 700;
 }
 
-.results-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 18px 4px 16px;
-  font-size: 12px;
+.results {
   color: var(--muted);
+  font-size: 12px;
+  margin: 18px 3px;
 }
 
-.reset-filters-btn {
-  background: transparent;
-  border: none;
-  color: var(--green);
-  font-size: 11px;
-  font-weight: 700;
-  text-decoration: underline;
-  cursor: pointer;
-  display: none;
-}
-
-/* Secciones por Era */
-.era-section {
-  margin-bottom: 38px;
-}
+.era-section { margin-bottom: 36px; }
 
 .era-heading {
   border-bottom: 1px solid var(--border);
   padding-bottom: 12px;
   margin-bottom: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 12px;
-  flex-wrap: wrap;
 }
 
 .era-heading h2 {
   font-family: 'Cinzel', serif;
   color: var(--green);
-  font-size: 19px;
+  font-size: 18px;
   margin: 0 0 5px;
 }
 
 .era-heading p {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
   margin: 0;
 }
 
-.era-counter {
-  font-size: 11px;
-  font-weight: 700;
-  color: #b8d8c3;
-  background: #0c1811;
-  border: 1px solid var(--border);
-  padding: 5px 10px;
-  border-radius: 8px;
-}
-
-/* Cuadrícula de Tarjetas */
 .cards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -311,69 +226,34 @@ header p {
 
 .card {
   display: flex;
-  gap: 14px;
-  padding: 13px;
+  gap: 13px;
+  padding: 12px;
   background: linear-gradient(145deg, #101b14, #080d0a);
   border: 1px solid #20372a;
-  border-radius: 16px;
+  border-radius: 15px;
   min-width: 0;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.2s, border-color 0.2s;
 }
 
 .card:hover {
-  border-color: rgba(32, 216, 120, 0.6);
+  border-color: #20d87899;
   transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55);
-}
-
-.card.final-card {
-  background: linear-gradient(145deg, #132d1e, #08110c);
-  border-color: rgba(32, 216, 120, 0.55);
-  box-shadow: 0 0 24px rgba(32, 216, 120, 0.12);
 }
 
 .card.watched {
-  opacity: 0.6;
+  opacity: 0.58;
   border-color: #167b48;
 }
 
-.card.watched:hover {
-  opacity: 0.88;
-}
-
-/* Portada vertical 2:3 con efecto shimmer y ampliación */
 .poster {
-  width: 116px;
-  min-width: 116px;
-  aspect-ratio: 2 / 3;
-  height: auto;
-  background: #17251c;
-  border-radius: 10px;
+  width: 114px;
+  min-width: 114px;
+  height: 171px;
+  background: #132018;
+  border-radius: 9px;
   object-fit: cover;
-  object-position: center top;
-  color: #aab8ae;
-  font-size: 10px;
   border: 1px solid #254231;
   cursor: zoom-in;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-  display: block;
-}
-
-.poster:hover {
-  transform: scale(1.035);
-  border-color: var(--green);
-  box-shadow: 0 6px 20px rgba(32, 216, 120, 0.28);
-}
-
-.poster.loading-shimmer {
-  background: linear-gradient(110deg, #0f1b14 25%, #1c3527 50%, #0f1b14 75%);
-  background-size: 200% 100%;
-  animation: posterShimmer 1.35s infinite linear;
-}
-
-@keyframes posterShimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
 }
 
 .card-content {
@@ -385,33 +265,25 @@ header p {
 
 .number {
   color: var(--green);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.5px;
 }
 
 .card h3 {
-  font-size: 14.5px;
+  font-size: 14px;
   line-height: 1.38;
-  margin: 6px 0 8px;
-}
-
-.card.watched h3 {
-  text-decoration: line-through;
-  text-decoration-color: rgba(32, 216, 120, 0.65);
-  color: #b7c4bc;
+  margin: 6px 0;
 }
 
 .meta {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  margin-bottom: 9px;
+  margin-bottom: 8px;
 }
 
 .tag {
-  font-size: 9.5px;
-  font-weight: 600;
+  font-size: 9px;
   padding: 4px 7px;
   border-radius: 6px;
   background: #18271d;
@@ -419,41 +291,14 @@ header p {
   border: 1px solid #294b35;
 }
 
-.tag.series {
-  background: #1a1b31;
-  color: #c4b5fd;
-  border-color: #3b356e;
-}
-
-.tag.important {
-  color: #64f3a0;
-  border-color: #256e45;
-  background: #102a1b;
-}
-
-.tag.muy-importante {
-  color: #fcd34d;
-  border-color: #68501a;
-  background: #241c0d;
-}
-
-.tag.recommended {
-  color: #8dcaff;
-  border-color: #264d6e;
-  background: #10202e;
-}
-
-.tag.final {
-  color: #041008;
-  background: var(--green);
-  border-color: #64f3a0;
-  font-weight: 800;
-}
+.tag.important { color: #64f3a0; }
+.tag.recommended { color: #8dcaff; }
+.tag.final { color: #ffd66d; }
 
 .synopsis {
-  font-size: 11.5px;
+  font-size: 11px;
   color: #aab7ae;
-  line-height: 1.55;
+  line-height: 1.5;
   margin: 0 0 12px;
 }
 
@@ -462,79 +307,54 @@ header p {
   border: 1px solid #2c5d3e;
   background: #10291a;
   color: #70eaa1;
-  border-radius: 9px;
-  padding: 9px 10px;
-  font-size: 10.5px;
+  border-radius: 8px;
+  padding: 9px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.4px;
   cursor: pointer;
   width: 100%;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
-}
-
-.mark:hover {
-  background: #163b25;
-  border-color: var(--green);
 }
 
 .watched .mark {
   background: #17452a;
   color: #a5ffc4;
-  border-color: #358c58;
 }
 
 .empty {
   text-align: center;
   color: var(--muted);
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 16px;
   padding: 45px 15px;
   display: none;
 }
 
 footer {
   text-align: center;
-  padding: 26px 15px;
+  padding: 25px;
   color: #64736a;
-  font-size: 11px;
-  letter-spacing: 1px;
+  font-size: 10px;
   border-top: 1px solid var(--border);
 }
 
-/* Botón flotante para volver arriba */
 #topButton {
   position: fixed;
-  bottom: 22px;
-  right: 20px;
-  width: 46px;
-  height: 46px;
+  bottom: 20px;
+  right: 18px;
+  width: 45px;
+  height: 45px;
   border: 1px solid #48e98b;
-  background: var(--green-dark);
+  background: #0e7540;
   color: #ffffff;
   border-radius: 14px;
   font-size: 20px;
-  font-weight: 800;
   display: none;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
-  z-index: 25;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65), 0 0 14px rgba(32, 216, 120, 0.3);
-  transition: transform 0.2s, background 0.2s;
+  z-index: 20;
 }
 
-#topButton:hover {
-  background: #139652;
-  transform: translateY(-2px);
-}
-
-/* Modales (Lightbox de portadas y Confirmación de reinicio) */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(3, 6, 4, 0.88);
-  backdrop-filter: blur(6px);
+  background: rgba(2, 5, 3, 0.88);
   display: none;
   align-items: center;
   justify-content: center;
@@ -542,151 +362,45 @@ footer {
   z-index: 50;
 }
 
-.modal-overlay.open {
-  display: flex;
-}
+.modal-overlay.open { display: flex; }
 
-.lightbox-box {
-  background: var(--panel);
-  border: 1px solid var(--green);
-  border-radius: 18px;
-  padding: 16px;
-  max-width: 410px;
+.modal-box {
+  background: #0c1410;
+  border: 1px solid #2c5d3e;
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 380px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(32, 216, 120, 0.2);
-  animation: popIn 0.2s ease-out;
 }
 
-.lightbox-img {
+.modal-box img {
   width: 100%;
-  max-height: 68vh;
-  aspect-ratio: 2 / 3;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: #09110c;
-}
-
-.lightbox-title {
-  font-family: 'Cinzel', serif;
-  font-size: 16px;
-  color: var(--text);
-  margin: 12px 0 4px;
-}
-
-.lightbox-sub {
-  font-size: 11.5px;
-  color: var(--green);
-  margin: 0 0 14px;
-}
-
-.modal-close-btn {
-  background: #133120;
-  color: var(--green);
-  border: 1px solid var(--green);
+  max-height: 440px;
+  object-fit: contain;
   border-radius: 10px;
-  padding: 9px 18px;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
+  margin-bottom: 12px;
 }
 
-.modal-close-btn:hover {
-  background: #1b462e;
-}
-
-.confirm-box {
-  background: var(--panel);
-  border: 1px solid #633333;
-  border-radius: 18px;
-  padding: 22px;
-  max-width: 370px;
-  width: 100%;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
-  animation: popIn 0.2s ease-out;
-}
-
-.confirm-box h3 {
-  margin: 0 0 8px;
-  color: #ffaaaa;
-  font-size: 17px;
-}
-
-.confirm-box p {
-  margin: 0 0 18px;
-  color: var(--muted);
-  font-size: 12.5px;
-  line-height: 1.55;
-}
-
-.confirm-actions {
+.modal-actions {
   display: flex;
-  justify-content: flex-end;
   gap: 10px;
+  margin-top: 16px;
 }
 
-.btn-cancel {
-  background: #152019;
-  color: var(--text);
-  border: 1px solid var(--border);
+.modal-actions button {
+  flex: 1;
+  padding: 10px;
   border-radius: 9px;
-  padding: 9px 14px;
-  font-size: 12px;
   cursor: pointer;
-}
-
-.btn-danger {
-  background: #7f1d1d;
-  color: #fecaca;
-  border: 1px solid #ef4444;
-  border-radius: 9px;
-  padding: 9px 14px;
-  font-size: 12px;
   font-weight: 700;
-  cursor: pointer;
-}
-
-@keyframes popIn {
-  from { opacity: 0; transform: scale(0.94); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* Adaptación móvil */
-@media (max-width: 820px) {
-  .filters-grid {
-    grid-template-columns: 1fr;
-  }
+  font-size: 12px;
 }
 
 @media (max-width: 650px) {
-  .cards {
-    grid-template-columns: 1fr;
-  }
-  .poster {
-    width: 106px;
-    min-width: 106px;
-  }
-  .card {
-    gap: 11px;
-    padding: 11px;
-  }
-  .card h3 {
-    font-size: 13.5px;
-  }
-  .synopsis {
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 360px) {
-  .poster {
-    width: 88px;
-    min-width: 88px;
-  }
-  .card {
-    gap: 9px;
-  }
+  .cards { grid-template-columns: 1fr; }
+  .poster { width: 108px; min-width: 108px; height: 162px; }
+  .card { gap: 11px; padding: 10px; }
 }
 </style>
 </head>
@@ -695,11 +409,13 @@ footer {
 
 <header>
   <div class="eyebrow">Guía cinematográfica • Multiverso Marvel</div>
-  <div class="logo-wrapper">
-    <img class="logo"
+  <div class="logo-wrap">
+    <img id="mainLogo" class="logo"
       src="https://lumiere-a.akamaihd.net/v1/images/tt_800x350_op1_fe469cac.png?region=0,0,800,350"
-      alt="Marvel Studios: Avengers Doomsday"
-      onerror="this.onerror=null; this.src='https://placehold.co/800x350/050806/20d878?text=AVENGERS%3A+DOOMSDAY';">
+      alt="Avengers: Doomsday"
+      referrerpolicy="no-referrer"
+      onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='block';">
+    <div id="logoFallback" class="logo-fallback">AVENGERS: DOOMSDAY</div>
   </div>
   <h1>RUTA A DOOMSDAY</h1>
   <p>Recorre las 28 películas y series en orden cronológico exacto hasta el enfrentamiento multiversal contra Victor Von Doom.</p>
@@ -707,97 +423,78 @@ footer {
 
 <main class="container">
 
-  <!-- Barra de progreso persistente -->
-  <section class="progress" aria-label="Progreso de visualización">
-    <div class="progress-top">
-      <strong>Tu progreso cronológico</strong>
-      <span id="percent">0%</span>
-    </div>
-    <div class="progress-track">
-      <div id="progressBar"></div>
-    </div>
-    <div class="progress-actions">
-      <span id="count">0 / 28 completadas</span>
-      <button class="reset" onclick="openResetModal()">Reiniciar progreso</button>
-    </div>
-  </section>
+<section class="progress">
+  <div class="progress-top">
+    <strong>Tu progreso cronológico</strong>
+    <span id="percent">0%</span>
+  </div>
+  <div class="progress-track">
+    <div id="progressBar"></div>
+  </div>
+  <div class="progress-actions">
+    <span id="count">0 / 28 completadas</span>
+    <button class="reset" onclick="openResetModal()">Reiniciar progreso</button>
+  </div>
+</section>
 
-  <!-- Buscador y filtros combinables -->
-  <section class="filters" aria-label="Filtros y búsqueda">
-    <div class="search-wrap">
-      <input id="search" class="search"
-        placeholder="Buscar película, serie, año o personaje (ej. Doom, Loki, X-Men, Wanda)..."
-        oninput="handleSearchInput()">
-      <button id="clearSearchBtn" class="clear-search" onclick="clearSearch()" title="Limpiar búsqueda">✕</button>
-    </div>
+<section class="filters">
+  <input id="search" class="search"
+    placeholder="Buscar película, serie, año o personaje (ej. Doom, Loki, X-Men)..."
+    oninput="render()">
 
-    <div class="filters-grid">
-      <div>
-        <div class="filter-label">ERA</div>
-        <div class="buttons" id="eraButtons">
-          <button class="filter-btn active" data-val="all" onclick="setFilter('era','all',this)">Todas</button>
-          <button class="filter-btn" data-val="era1" onclick="setFilter('era','era1',this)">Orígenes</button>
-          <button class="filter-btn" data-val="era2" onclick="setFilter('era','era2',this)">Multiverso</button>
-          <button class="filter-btn" data-val="era3" onclick="setFilter('era','era3',this)">Recta final</button>
-        </div>
-      </div>
-
-      <div>
-        <div class="filter-label">IMPORTANCIA</div>
-        <div class="buttons" id="importanceButtons">
-          <button class="filter-btn active" data-val="all" onclick="setFilter('importance','all',this)">Todas</button>
-          <button class="filter-btn" data-val="Imprescindible" onclick="setFilter('importance','Imprescindible',this)">Imprescindible</button>
-          <button class="filter-btn" data-val="Muy Importante" onclick="setFilter('importance','Muy Importante',this)">Muy Importante</button>
-          <button class="filter-btn" data-val="Recomendado" onclick="setFilter('importance','Recomendado',this)">Recomendado</button>
-        </div>
-      </div>
-
-      <div>
-        <div class="filter-label">ESTADO</div>
-        <div class="buttons" id="statusButtons">
-          <button class="filter-btn active" data-val="all" onclick="setFilter('status','all',this)">Todas</button>
-          <button class="filter-btn" data-val="pending" onclick="setFilter('status','pending',this)">Pendientes</button>
-          <button class="filter-btn" data-val="watched" onclick="setFilter('status','watched',this)">Vistas</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Resumen de resultados -->
-  <div class="results-bar">
-    <span id="results">Mostrando 28 de 28 entregas</span>
-    <button id="resetFiltersBtn" class="reset-filters-btn" onclick="resetAllFilters()">Limpiar filtros</button>
+  <div class="filter-label">ERA</div>
+  <div class="buttons">
+    <button class="filter-btn active" onclick="setFilter('era','all',this)">Todas</button>
+    <button class="filter-btn" onclick="setFilter('era','era1',this)">Orígenes</button>
+    <button class="filter-btn" onclick="setFilter('era','era2',this)">Multiverso</button>
+    <button class="filter-btn" onclick="setFilter('era','era3',this)">Recta final</button>
   </div>
 
-  <!-- Contenedor dinámico de eras y tarjetas -->
-  <div id="list"></div>
-  <div class="empty" id="empty">No se encontraron películas o series con los filtros actuales.</div>
+  <div class="filter-label">IMPORTANCIA</div>
+  <div class="buttons">
+    <button class="filter-btn active" onclick="setFilter('importance','all',this)">Todas</button>
+    <button class="filter-btn" onclick="setFilter('importance','Imprescindible',this)">Imprescindible</button>
+    <button class="filter-btn" onclick="setFilter('importance','Muy Importante',this)">Muy Importante</button>
+    <button class="filter-btn" onclick="setFilter('importance','Recomendado',this)">Recomendado</button>
+  </div>
+
+  <div class="filter-label">ESTADO</div>
+  <div class="buttons">
+    <button class="filter-btn active" onclick="setFilter('status','all',this)">Todas</button>
+    <button class="filter-btn" onclick="setFilter('status','pending',this)">Pendientes</button>
+    <button class="filter-btn" onclick="setFilter('status','watched',this)">Vistas</button>
+  </div>
+</section>
+
+<div class="results" id="results"></div>
+<div id="list"></div>
+<div class="empty" id="empty">No se encontraron resultados con esos filtros.</div>
 
 </main>
 
 <footer>GUÍA DE MARATÓN • AVENGERS: DOOMSDAY</footer>
+<button id="topButton" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<!-- Botón flotante para subir -->
-<button id="topButton" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba" title="Volver arriba">↑</button>
-
-<!-- Visor Lightbox para ampliar portadas -->
-<div id="posterModal" class="modal-overlay" onclick="if(event.target===this) closePosterModal()">
-  <div class="lightbox-box">
-    <img id="lightboxImg" class="lightbox-img" referrerpolicy="no-referrer" src="" alt="Portada ampliada">
-    <h3 id="lightboxTitle" class="lightbox-title"></h3>
-    <p id="lightboxSub" class="lightbox-sub"></p>
-    <button class="modal-close-btn" onclick="closePosterModal()">Cerrar vista previa</button>
+<!-- Modal Lightbox de Portada -->
+<div id="lightboxModal" class="modal-overlay" onclick="if(event.target===this) closeLightbox()">
+  <div class="modal-box">
+    <img id="lightboxImg" src="" alt="Portada ampliada" referrerpolicy="no-referrer">
+    <h3 id="lightboxTitle" style="margin:6px 0;font-size:16px;"></h3>
+    <p id="lightboxSub" style="margin:0;color:#9aa9a0;font-size:12px;"></p>
+    <div class="modal-actions">
+      <button style="background:#10291a;color:#70eaa1;border:1px solid #2c5d3e;" onclick="closeLightbox()">Cerrar</button>
+    </div>
   </div>
 </div>
 
-<!-- Modal personalizado para reiniciar progreso (sin confirm()) -->
+<!-- Modal Reiniciar Progreso -->
 <div id="resetModal" class="modal-overlay" onclick="if(event.target===this) closeResetModal()">
-  <div class="confirm-box">
-    <h3>¿Reiniciar progreso?</h3>
-    <p>Se desmarcarán todas las películas y series completadas hasta ahora. Esta acción no se puede deshacer.</p>
-    <div class="confirm-actions">
-      <button class="btn-cancel" onclick="closeResetModal()">Cancelar</button>
-      <button class="btn-danger" onclick="confirmResetProgress()">Sí, reiniciar</button>
+  <div class="modal-box">
+    <h3 style="margin:0 0 8px;color:#ffaaaa;">¿Reiniciar todo tu progreso?</h3>
+    <p style="margin:0;color:#9aa9a0;font-size:12px;line-height:1.5;">Se desmarcarán todas las películas y series completadas.</p>
+    <div class="modal-actions">
+      <button style="background:#09110c;color:#aebbb2;border:1px solid #20372a;" onclick="closeResetModal()">Cancelar</button>
+      <button style="background:#291313;color:#ffaaaa;border:1px solid #633333;" onclick="confirmReset()">Sí, reiniciar</button>
     </div>
   </div>
 </div>
@@ -806,61 +503,311 @@ footer {
 const eras = {
   era1: {
     title: "ERA 1 — ORÍGENES Y SAGA DEL INFINITO",
-    subtitle: "Las bases del UCM, los X-Men de Fox y la primera aparición de Los 4 Fantásticos."
+    subtitle: "Las bases del UCM, los X-Men y los primeros héroes."
   },
   era2: {
     title: "ERA 2 — LA SAGA DEL MULTIVERSO",
-    subtitle: "Líneas temporales ramificadas, universos alternativos e incursiones."
+    subtitle: "Líneas temporales, universos alternativos e incursiones."
   },
   era3: {
     title: "ERA 3 — LA RECTA FINAL",
-    subtitle: "La reconstrucción de los Vengadores y el camino directo a Doomsday."
+    subtitle: "La reconstrucción de los Vengadores y el camino a Doomsday."
   }
 };
 
-// Catálogo cronológico exacto de las 28 entregas (#01 a #28) con pósteres oficiales del CDN de Marvel
 const movies = [
-  { title: "Capitán América: El Primer Vengador", year: "1943-1945", releaseYear: 2011, era: "era1", type: "Película", importance: "Recomendado", marvelPoster: "https://cdn.marvel.com/content/1x/captainamericathefirstavenger_lob_crd_01.jpg", searchQuery: "Captain America: The First Avenger", wiki: "Captain America: The First Avenger", synopsis: "Origen de Steve Rogers, el suero del supersoldado y el Teseracto." },
-  { title: "Los 4 Fantásticos: Primeros Pasos", year: "Años 60", releaseYear: 2025, era: "era1", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/thefantasticfourfirststeps_lob_crd_02.jpg", searchQuery: "The Fantastic Four: First Steps", wiki: "The Fantastic Four: First Steps", synopsis: "Presenta a Reed Richards, Sue Storm, Johnny Storm y Ben Grimm en un mundo retrofuturista y anticipa a Doctor Doom." },
-  { title: "Capitana Marvel", year: "1995", releaseYear: 2019, era: "era1", type: "Película", importance: "Recomendado", marvelPoster: "https://cdn.marvel.com/content/1x/captainmarvel_lob_crd_06.jpg", searchQuery: "Captain Marvel", wiki: "Captain Marvel (film)", synopsis: "Origen de Carol Danvers, Nick Fury joven y la llegada de los Skrulls a la Tierra." },
-  { title: "X-Men (2000)", year: "Universo Fox", releaseYear: 2000, era: "era1", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/x-men_lob_crd_01.jpg", searchQuery: "X-Men", wiki: "X-Men (film)", synopsis: "Presenta a Charles Xavier, Magneto, Cíclope y los mutantes clásicos." },
-  { title: "X-Men 2 (X2)", year: "Universo Fox", releaseYear: 2003, era: "era1", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/x2_lob_crd_01.jpg", searchQuery: "X2: X-Men United", wiki: "X2 (film)", synopsis: "Profundiza en Rondador Nocturno, Wolverine y la alianza temporal entre X-Men y Magneto." },
-  { title: "X-Men: Días del Futuro Pasado", year: "1973 / 2023", releaseYear: 2014, era: "era1", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/x-mendaysoffuturepast_lob_crd_01.jpg", searchQuery: "X-Men: Days of Future Past", wiki: "X-Men: Days of Future Past", synopsis: "Viajes en el tiempo y reescritura de la línea temporal mutante." },
-  { title: "Iron Man", year: "2008", releaseYear: 2008, era: "era1", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/ironman_lob_crd_01_3.jpg", searchQuery: "Iron Man", wiki: "Iron Man (2008 film)", synopsis: "El inicio del UCM y la historia de Tony Stark, esencial por su conexión visual con Doctor Doom." },
-  { title: "Los Vengadores", year: "2012", releaseYear: 2012, era: "era1", type: "Película", importance: "Recomendado", marvelPoster: "https://cdn.marvel.com/content/1x/theavengers_lob_crd_03.jpg", searchQuery: "Marvel's The Avengers", wiki: "The Avengers (2012 film)", synopsis: "Primera reunión de los héroes más poderosos de la Tierra frente a Loki." },
-  { title: "Vengadores: La Era de Ultrón", year: "2015", releaseYear: 2015, era: "era1", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/avengersageofultron_lob_crd_03.jpg", searchQuery: "Avengers: Age of Ultron", wiki: "Avengers: Age of Ultron", synopsis: "Introduce a Wanda Maximoff y Visión, y explora los temores de Tony Stark sobre amenazas cósmicas." },
-  { title: "Capitán América: Civil War", year: "2016", releaseYear: 2016, era: "era1", type: "Película", importance: "Recomendado", marvelPoster: "https://cdn.marvel.com/content/1x/captainamericacivilwar_lob_crd_01_9.jpg", searchQuery: "Captain America: Civil War", wiki: "Captain America: Civil War", synopsis: "Fractura a los Vengadores y presenta a Spider-Man y Black Panther." },
-  { title: "Doctor Strange", year: "2016", releaseYear: 2016, era: "era1", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/doctorstrange_lob_crd_01_6.jpg", searchQuery: "Doctor Strange", wiki: "Doctor Strange (2016 film)", synopsis: "Introduce las artes místicas y las primeras advertencias sobre el multiverso." },
-  { title: "Vengadores: Infinity War", year: "2018", releaseYear: 2018, era: "era1", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/avengersinfinitywar_lob_crd_02_1.jpg", searchQuery: "Avengers: Infinity War", wiki: "Avengers: Infinity War", synopsis: "La batalla contra Thanos por las Gemas del Infinito y el chasquido." },
-  { title: "Vengadores: Endgame", year: "2018 / 2023", releaseYear: 2019, era: "era1", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/avengersendgame_lob_crd_05_2.jpg", searchQuery: "Avengers: Endgame", wiki: "Avengers: Endgame", synopsis: "El atraco en el tiempo, el sacrificio de Tony Stark y el retiro de Steve Rogers." },
-  { title: "Loki (Temporadas 1 y 2)", year: "Fuera del tiempo", releaseYear: 2021, era: "era2", type: "Serie", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/lokis2_lob_crd_04.jpg", searchQuery: "Loki", wiki: "Loki (TV series)", synopsis: "Explica la AVT, las líneas temporales ramificadas y deja a Loki sosteniendo todo el multiverso." },
-  { title: "WandaVision", year: "2023", releaseYear: 2021, era: "era2", type: "Serie", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/wandavision_lob_crd_06.jpg", searchQuery: "WandaVision", wiki: "WandaVision", synopsis: "Wanda se convierte en la Bruja Escarlata, obtiene el Darkhold y nace Visión Blanco." },
-  { title: "Falcon y el Soldado de Invierno", year: "2024", releaseYear: 2021, era: "era2", type: "Serie", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/falcws_lob_crd_03.jpg", searchQuery: "The Falcon and the Winter Soldier", wiki: "The Falcon and the Winter Soldier", synopsis: "Sam Wilson asume el escudo del Capitán América y se presenta a U.S. Agent." },
-  { title: "Shang-Chi y la Leyenda de los Diez Anillos", year: "2024", releaseYear: 2021, era: "era2", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/shangchi_lob_crd_07.jpg", searchQuery: "Shang-Chi and the Legend of the Ten Rings", wiki: "Shang-Chi and the Legend of the Ten Rings", synopsis: "Presenta a Shang-Chi y revela la misteriosa baliza dentro de los Diez Anillos." },
-  { title: "Spider-Man: No Way Home", year: "2024", releaseYear: 2021, era: "era2", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/spider-mannowayhome_lob_crd_03.jpg", searchQuery: "Spider-Man: No Way Home", wiki: "Spider-Man: No Way Home", synopsis: "Una gran ruptura multiversal y el hechizo que hace olvidar al mundo quién es Peter Parker." },
-  { title: "Doctor Strange en el Multiverso de la Locura", year: "2024", releaseYear: 2022, era: "era2", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/doctorstrangeinthemultiverseofmadness_lob_crd_02_3.jpg", searchQuery: "Doctor Strange in the Multiverse of Madness", wiki: "Doctor Strange in the Multiverse of Madness", synopsis: "Introduce oficialmente las incursiones entre universos y a los Illuminati." },
-  { title: "Black Panther: Wakanda Forever", year: "2025", releaseYear: 2022, era: "era2", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/blackpantherwakandaforever_lob_crd_06.jpg", searchQuery: "Black Panther: Wakanda Forever", wiki: "Black Panther: Wakanda Forever", synopsis: "Shuri asume el manto de Black Panther y se presenta a Namor y Talokan." },
-  { title: "Ant-Man y la Avispa: Quantumanía", year: "2026", releaseYear: 2023, era: "era2", type: "Película", importance: "Recomendado", marvelPoster: "https://cdn.marvel.com/content/1x/antmanandthewaspquantumania_lob_crd_03.jpg", searchQuery: "Ant-Man and the Wasp: Quantumania", wiki: "Ant-Man and the Wasp: Quantumania", synopsis: "Explora el Reino Cuántico y el Consejo de Kangs." },
-  { title: "The Marvels", year: "2026", releaseYear: 2023, era: "era2", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/themarvels_lob_crd_05.jpg", searchQuery: "The Marvels", wiki: "The Marvels (film)", synopsis: "Monica Rambeau queda atrapada en el universo paralelo de los X-Men junto a Bestia." },
-  { title: "Deadpool & Wolverine", year: "2026", releaseYear: 2024, era: "era2", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/deadpoolandwolverine_lob_crd_03.jpg", searchQuery: "Deadpool & Wolverine", wiki: "Deadpool & Wolverine", synopsis: "Conecta el universo mutante de Fox con la AVT, los seres ancla y el Vacío." },
-  { title: "Capitán América: Un Nuevo Mundo", year: "2027", releaseYear: 2025, era: "era3", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/captainamericabravenewworld_lob_crd_05.jpg", searchQuery: "Captain America: Brave New World", wiki: "Captain America: Brave New World", synopsis: "Sam Wilson reconstruye el legado del Capitán América y reorganiza a los Vengadores." },
-  { title: "Thunderbolts*", year: "2027", releaseYear: 2025, era: "era3", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/thunderbolts_lob_crd_03.jpg", searchQuery: "Thunderbolts*", wiki: "Thunderbolts* (film)", synopsis: "Reúne a Yelena, Bucky, Red Guardian, Ghost, U.S. Agent y Sentry; conecta directo con Los 4 Fantásticos." },
-  { title: "Spider-Man: Brand New Day", year: "2028", releaseYear: 2026, era: "era3", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/spider-manbrandnewday_lob_crd_01.jpg", searchQuery: "Spider-Man: Brand New Day", wiki: "Spider-Man: Brand New Day", synopsis: "La nueva vida de Peter Parker en Nueva York después del hechizo de olvido." },
-  { title: "VisionQuest", year: "2028", releaseYear: 2026, era: "era3", type: "Serie", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/visionquest_lob_crd_01.jpg", searchQuery: "Vision Quest", wiki: "VisionQuest (TV series)", synopsis: "Sigue a Visión Blanco recuperando sus recuerdos y el regreso de Ultrón." },
-  { title: "AVENGERS: DOOMSDAY", year: "Clímax multiversal", releaseYear: 2026, era: "era3", type: "Evento Final", importance: "Evento Principal", marvelPoster: "https://cdn.marvel.com/content/1x/avengersdoomsday_lob_crd_01.jpg", searchQuery: "Avengers: Doomsday", wiki: "Avengers: Doomsday", synopsis: "El enfrentamiento definitivo entre los Vengadores, Thunderbolts, Los 4 Fantásticos y los X-Men contra Victor Von Doom." }
+  {
+    title: "Capitán América: El Primer Vengador",
+    year: "1943-1945",
+    era: "era1",
+    type: "Película",
+    importance: "Recomendado",
+    searchEn: "Captain America: The First Avenger",
+    poster: "https://cdn.marvel.com/content/1x/captainamerica_lob_crd_01.jpg",
+    synopsis: "Origen de Steve Rogers, el suero del supersoldado y el Teseracto."
+  },
+  {
+    title: "Los 4 Fantásticos: Primeros Pasos",
+    year: "Años 60",
+    era: "era1",
+    type: "Película",
+    importance: "Imprescindible",
+    searchEn: "The Fantastic Four: First Steps",
+    poster: "https://cdn.marvel.com/content/1x/thefantasticfourfirststeps_lob_crd_02.jpg",
+    synopsis: "Presenta a Reed Richards, Sue Storm, Johnny Storm y Ben Grimm en un mundo retrofuturista."
+  },
+  {
+    title: "Capitana Marvel",
+    year: "1995",
+    era: "era1",
+    type: "Película",
+    importance: "Recomendado",
+    searchEn: "Captain Marvel",
+    poster: "https://cdn.marvel.com/content/1x/captainmarvel_lob_crd_06.jpg",
+    synopsis: "Origen de Carol Danvers, Nick Fury joven y la llegada de los Skrulls."
+  },
+  {
+    title: "X-Men (2000)",
+    year: "Universo Fox",
+    era: "era1",
+    type: "Película",
+    importance: "Muy Importante",
+    searchEn: "X-Men 2000",
+    poster: "https://upload.wikimedia.org/wikipedia/en/8/81/X-MenfilmPoster.jpg",
+    synopsis: "Presenta a Charles Xavier, Magneto, Cíclope y los mutantes clásicos."
+  },
+  {
+    title: "X-Men 2 (X2)",
+    year: "Universo Fox",
+    era: "era1",
+    type: "Película",
+    importance: "Muy Importante",
+    searchEn: "X2 X-Men United",
+    poster: "https://upload.wikimedia.org/wikipedia/en/3/3e/X2_poster.jpg",
+    synopsis: "Profundiza en Rondador Nocturno, Wolverine y la alianza entre X-Men y Magneto."
+  },
+  {
+    title: "X-Men: Días del Futuro Pasado",
+    year: "1973 / 2023",
+    era: "era1",
+    type: "Película",
+    importance: "Imprescindible",
+    searchEn: "X-Men: Days of Future Past",
+    poster: "https://upload.wikimedia.org/wikipedia/en/0/0c/X-Men_Days_of_Future_Past_poster.jpg",
+    synopsis: "Viajes en el tiempo y cambios en la línea temporal mutante."
+  },
+  {
+    title: "Iron Man",
+    year: "2008",
+    era: "era1",
+    type: "Película",
+    importance: "Imprescindible",
+    searchEn: "Iron Man 2008",
+    poster: "https://cdn.marvel.com/content/1x/ironman_lob_crd_01_3.jpg",
+    synopsis: "El inicio del UCM y la historia de Tony Stark."
+  },
+  {
+    title: "Los Vengadores",
+    year: "2012",
+    era: "era1",
+    type: "Película",
+    importance: "Recomendado",
+    searchEn: "The Avengers 2012",
+    poster: "https://cdn.marvel.com/content/1x/theavengers_lob_crd_03.jpg",
+    synopsis: "Primera reunión de los héroes más poderosos de la Tierra."
+  },
+  {
+    title: "Vengadores: La Era de Ultrón",
+    year: "2015",
+    era: "era1",
+    type: "Película",
+    importance: "Muy Importante",
+    searchEn: "Avengers: Age of Ultron",
+    poster: "https://cdn.marvel.com/content/1x/avengersageofultron_lob_crd_03.jpg",
+    synopsis: "Introduce a Wanda Maximoff y Visión, y explora los temores de Tony Stark."
+  },
+  {
+    title: "Capitán América: Civil War",
+    year: "2016",
+    era: "era1",
+    type: "Película",
+    importance: "Recomendado",
+    searchEn: "Captain America: Civil War",
+    poster: "https://cdn.marvel.com/content/1x/captainamericacivilwar_lob_crd_01_9.jpg",
+    synopsis: "Divide a los Vengadores y presenta a Spider-Man y Black Panther."
+  },
+  {
+    title: "Doctor Strange",
+    year: "2016",
+    era: "era1",
+    type: "Película",
+    importance: "Muy Importante",
+    searchEn: "Doctor Strange 2016",
+    poster: "https://cdn.marvel.com/content/1x/doctorstrange_lob_crd_01_6.jpg",
+    synopsis: "Introduce las artes místicas y las primeras advertencias sobre el multiverso."
+  },
+  {
+    title: "Vengadores: Infinity War",
+    year: "2018",
+    era: "era1",
+    type: "Película",
+    importance: "Imprescindible",
+    searchEn: "Avengers: Infinity War",
+    poster: "https://cdn.marvel.com/content/1x/avengersinfinitywar_lob_crd_02_1.jpg",
+    synopsis: "La batalla contra Thanos por las Gemas del Infinito."
+  },
+  {
+    title: "Vengadores: Endgame",
+    year: "2018 / 2023",
+    era: "era1",
+    type: "Película",
+    importance: "Imprescindible",
+    searchEn: "Avengers: Endgame",
+    poster: "https://cdn.marvel.com/content/1x/avengersendgame_lob_crd_05_2.jpg",
+    synopsis: "El viaje temporal, el sacrificio de Tony Stark y el retiro de Steve Rogers."
+  },
+  {
+    title: "Loki (Temporadas 1 y 2)",
+    year: "Fuera del tiempo",
+    era: "era2",
+    type: "Serie",
+    importance: "Imprescindible",
+    searchEn: "Loki",
+    poster: "https://cdn.marvel.com/content/1x/lokis2_lob_crd_04.jpg",
+    synopsis: "Explica la AVT, las líneas temporales ramificadas y el papel de Loki en el multiverso."
+  },
+  {
+    title: "WandaVision",
+    year: "2023",
+    era: "era2",
+    type: "Serie",
+    importance: "Muy Importante",
+    searchEn: "WandaVision",
+    poster: "https://cdn.marvel.com/content/1x/wandavision_lob_crd_06.jpg",
+    synopsis: "Wanda se convierte en la Bruja Escarlata y aparece Visión Blanco."
+  },
+  {
+    title: "Falcon y el Soldado de Invierno",
+    year: "2024",
+    era: "era2",
+    type: "Serie",
+    importance: "Muy Importante",
+    searchEn: "The Falcon and the Winter Soldier",
+    poster: "https://cdn.marvel.com/content/1x/falcws_lob_crd_03.jpg",
+    synopsis: "Sam Wilson asume el escudo del Capitán América."
+  },
+  {
+    title: "Shang-Chi y la Leyenda de los Diez Anillos",
+    year: "2024",
+    era: "era2",
+    type: "Película",
+    importance: "Muy Importante",
+    searchEn: "Shang-Chi and the Legend of the Ten Rings",
+    poster: "https://cdn.marvel.com/content/1x/shangchi_lob_crd_07.jpg",
+    synopsis: "Presenta a Shang-Chi y los misteriosos Diez Anillos."
+  },
+  {
+    title: "Spider-Man: No Way Home",
+    year: "2024",
+    era: "era2",
+    type: "Película",
+    importance: "Muy Importante",
+    searchEn: "Spider-Man: No Way Home",
+    poster: "https://cdn.marvel.com/content/1x/spider-mannowayhome_lob_crd_03.jpg",
+    synopsis: "Una gran ruptura multiversal y el hechizo que hace olvidar a Peter Parker."
+  },
+  {
+    title: "Doctor Strange en el Multiverso de la Locura",
+    year: "2024",
+    era: "era2",
+    type: "Película",
+    importance: "Imprescindible",
+    searchEn: "Doctor Strange in the Multiverse of Madness",
+    poster: "https://cdn.marvel.com/content/1x/doctorstrangeinthemultiverseofmadness_lob_crd_02_3.jpg",
+    synopsis: "Introduce las incursiones y a los Illuminati."
+  },
+  {
+    title: "Black Panther: Wakanda Forever",
+    year: "2025",
+    era: "era2",
+    type: "Película",
+    importance: "Muy Importante",
+    searchEn: "Black Panther: Wakanda Forever",
+    poster: "https://cdn.marvel.com/content/1x/blackpantherwakandaforever_lob_crd_06.jpg",
+    synopsis: "Shuri asume el manto de Black Panther y aparece Namor."
+  },
+  {
+    title: "Ant-Man y la Avispa: Quantumanía",
+    year: "2026",
+    era: "era2",
+    type: "Película",
+    importance: "Recomendado",
+    searchEn: "Ant-Man and the Wasp: Quantumania",
+    poster: "https://cdn.marvel.com/content/1x/antmanandthewaspquantumania_lob_crd_03.jpg",
+    synopsis: "Explora el Reino Cuántico y el Consejo de Kangs."
+  },
+  {
+    title: "The Marvels",
+    year: "2026",
+    era: "era2",
+    type: "Película",
+    importance: "Imprescindible",
+    searchEn: "The Marvels",
+    poster: "https://cdn.marvel.com/content/1x/themarvels_lob_crd_05.jpg",
+    synopsis: "Monica Rambeau queda atrapada en el universo de los X-Men."
+  },
+  {
+    title: "Deadpool & Wolverine",
+    year: "2026",
+    era: "era2",
+    type: "Película",
+    importance: "Imprescindible",
+    searchEn: "Deadpool & Wolverine",
+    poster: "https://cdn.marvel.com/content/1x/deadpoolandwolverine_lob_crd_03.jpg",
+    synopsis: "Conecta el universo mutante de Fox con la AVT y el Vacío."
+  },
+  {
+    title: "Capitán América: Un Nuevo Mundo",
+    year: "2027",
+    era: "era3",
+    type: "Película",
+    importance: "Imprescindible",
+    searchEn: "Captain America: Brave New World",
+    poster: "https://cdn.marvel.com/content/1x/captainamericabravenewworld_lob_crd_03.jpg",
+    synopsis: "Sam Wilson reconstruye el legado del Capitán América."
+  },
+  {
+    title: "Thunderbolts*",
+    year: "2027",
+    era: "era3",
+    type: "Película",
+    importance: "Imprescindible",
+    searchEn: "Thunderbolts*",
+    poster: "https://cdn.marvel.com/content/1x/thunderbolts_lob_crd_03.jpg",
+    synopsis: "Reúne a Yelena, Bucky, Red Guardian, Ghost, U.S. Agent y Sentry."
+  },
+  {
+    title: "Spider-Man: Brand New Day",
+    year: "2028",
+    era: "era3",
+    type: "Película",
+    importance: "Muy Importante",
+    searchEn: "Spider-Man: Brand New Day",
+    poster: "https://cdn.marvel.com/content/1x/spidermanbrandnewday_lob_crd_01.jpg",
+    synopsis: "La vida de Peter Parker después del hechizo de olvido."
+  },
+  {
+    title: "VisionQuest",
+    year: "2028",
+    era: "era3",
+    type: "Serie",
+    importance: "Muy Importante",
+    searchEn: "VisionQuest",
+    poster: "https://cdn.marvel.com/content/1x/visionquest_lob_crd_01.jpg",
+    synopsis: "Sigue a Visión Blanco recuperando sus recuerdos y el regreso de Ultrón."
+  },
+  {
+    title: "AVENGERS: DOOMSDAY",
+    year: "Clímax multiversal",
+    era: "era3",
+    type: "Evento Final",
+    importance: "Evento Principal",
+    searchEn: "Avengers: Doomsday",
+    poster: "https://cdn.marvel.com/content/1x/avengersdoomsday_lob_crd_01.jpg",
+    synopsis: "El enfrentamiento entre los Vengadores, Thunderbolts, los 4 Fantásticos y los X-Men contra Victor Von Doom."
+  }
 ];
 
-const STORAGE_KEY = "doomsday_progress";
 let watched = new Set();
 let filters = { era: "all", importance: "all", status: "all" };
 
 try {
-  watched = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
+  watched = new Set(JSON.parse(localStorage.getItem("doomsday_progress") || "[]"));
 } catch (e) {}
 
 function save() {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify([...watched]));
+    localStorage.setItem("doomsday_progress", JSON.stringify([...watched]));
   } catch (e) {}
 }
 
@@ -872,268 +819,114 @@ function updateProgress() {
   document.getElementById("progressBar").style.width = percent + "%";
 }
 
-/* ==========================================================================
-   MOTOR AVANZADO DE PORTADAS EN CASCADA
-   (Marvel CDN Oficial -> TVMaze -> iTunes -> Wikipedia -> Canvas HD)
-   ========================================================================== */
-const posterCache = new Map();
-const pendingRequests = new Map();
-
-// Generador de póster vertical estilizado HD (400x600) en Canvas como respaldo final infalible
-function generateStylizedPoster(movie, index) {
+function createCanvasPoster(movie, index) {
   const canvas = document.createElement("canvas");
   canvas.width = 400;
   canvas.height = 600;
   const ctx = canvas.getContext("2d");
 
-  const isFinal = movie.type === "Evento Final";
-  const isSeries = movie.type === "Serie";
-
-  const bgGrad = ctx.createLinearGradient(0, 0, 400, 600);
-  if (isFinal) {
-    bgGrad.addColorStop(0, "#0b2e1b");
-    bgGrad.addColorStop(0.5, "#05110a");
-    bgGrad.addColorStop(1, "#020503");
-  } else if (isSeries) {
-    bgGrad.addColorStop(0, "#10232b");
-    bgGrad.addColorStop(0.55, "#07100c");
-    bgGrad.addColorStop(1, "#030604");
-  } else {
-    bgGrad.addColorStop(0, "#12291c");
-    bgGrad.addColorStop(0.55, "#08120c");
-    bgGrad.addColorStop(1, "#030504");
-  }
-  ctx.fillStyle = bgGrad;
+  const grad = ctx.createLinearGradient(0, 0, 400, 600);
+  grad.addColorStop(0, "#0b1a12");
+  grad.addColorStop(0.5, "#112b1d");
+  grad.addColorStop(1, "#050907");
+  ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 400, 600);
 
-  // Resplandor radial central
-  const radial = ctx.createRadialGradient(200, 210, 15, 200, 210, 230);
-  radial.addColorStop(0, isFinal ? "rgba(32, 216, 120, 0.36)" : "rgba(32, 216, 120, 0.2)");
-  radial.addColorStop(1, "rgba(0, 0, 0, 0)");
-  ctx.fillStyle = radial;
-  ctx.fillRect(0, 0, 400, 600);
-
-  // Anillos geométricos multiversales
-  ctx.strokeStyle = "rgba(32, 216, 120, 0.18)";
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.arc(200, 215, 115, 0, Math.PI * 2);
-  ctx.stroke();
-
-  ctx.strokeStyle = "rgba(255, 214, 109, 0.15)";
-  ctx.lineWidth = 1.5;
-  ctx.beginPath();
-  ctx.arc(200, 215, 145, 0, Math.PI * 2);
-  ctx.stroke();
-
-  // Marco interior
-  ctx.strokeStyle = isFinal ? "#20d878" : "rgba(32, 216, 120, 0.45)";
-  ctx.lineWidth = 3;
+  ctx.strokeStyle = "#20d878";
+  ctx.lineWidth = 5;
   ctx.strokeRect(16, 16, 368, 568);
 
-  // Etiqueta superior
-  ctx.fillStyle = isFinal ? "#20d878" : "#112b1c";
-  ctx.fillRect(110, 36, 180, 28);
-  ctx.fillStyle = isFinal ? "#030805" : "#20d878";
-  ctx.font = "800 13px Inter, sans-serif";
+  ctx.fillStyle = "#e62429";
+  ctx.fillRect(110, 48, 180, 34);
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "900 18px Inter, sans-serif";
   ctx.textAlign = "center";
-  ctx.fillText(movie.type.toUpperCase(), 200, 55);
+  ctx.fillText("MARVEL STUDIOS", 200, 71);
 
-  // Número cronológico grande de fondo
-  ctx.fillStyle = "rgba(32, 216, 120, 0.13)";
-  ctx.font = "900 130px Cinzel, Georgia, serif";
-  ctx.fillText(String(index + 1).padStart(2, "0"), 200, 255);
+  ctx.fillStyle = "#20d878";
+  ctx.font = "800 16px Inter, sans-serif";
+  ctx.fillText("#" + String(index + 1).padStart(2, "0") + " • " + movie.type.toUpperCase(), 200, 125);
 
-  // Emblema central
-  ctx.strokeStyle = "#20d878";
-  ctx.lineWidth = 3;
-  ctx.beginPath();
-  ctx.moveTo(200, 145);
-  ctx.lineTo(155, 265);
-  ctx.moveTo(200, 145);
-  ctx.lineTo(245, 265);
-  ctx.moveTo(165, 232);
-  ctx.lineTo(248, 212);
-  ctx.stroke();
-
-  // Título multilínea centrado
   ctx.fillStyle = "#f1f5f2";
-  ctx.font = "900 25px Cinzel, Georgia, serif";
+  ctx.font = "900 30px Cinzel, serif";
   const words = movie.title.toUpperCase().split(" ");
-  const lines = [];
-  let currentLine = "";
-  for (const w of words) {
-    const test = currentLine ? currentLine + " " + w : w;
-    if (ctx.measureText(test).width > 330 && currentLine) {
-      lines.push(currentLine);
-      currentLine = w;
+  let line = "";
+  let y = 260;
+  for (let i = 0; i < words.length; i++) {
+    const testLine = line + words[i] + " ";
+    if (ctx.measureText(testLine).width > 320 && i > 0) {
+      ctx.fillText(line.trim(), 200, y);
+      line = words[i] + " ";
+      y += 42;
     } else {
-      currentLine = test;
+      line = testLine;
     }
   }
-  if (currentLine) lines.push(currentLine);
-
-  const startY = 395 - (lines.length - 1) * 16;
-  lines.forEach((line, i) => {
-    ctx.fillText(line, 200, startY + i * 34);
-  });
-
-  // Separador inferior
-  ctx.strokeStyle = "rgba(32, 216, 120, 0.5)";
-  ctx.lineWidth = 1.5;
-  ctx.beginPath();
-  ctx.moveTo(80, 510);
-  ctx.lineTo(320, 510);
-  ctx.stroke();
-
-  // Línea temporal y leyenda
-  ctx.fillStyle = "#70eaa1";
-  ctx.font = "700 14px Inter, sans-serif";
-  ctx.fillText(movie.year.toUpperCase(), 200, 538);
+  ctx.fillText(line.trim(), 200, y);
 
   ctx.fillStyle = "#9aa9a0";
-  ctx.font = "600 11px Inter, sans-serif";
-  ctx.fillText("RUTA A AVENGERS: DOOMSDAY", 200, 562);
+  ctx.font = "700 18px Inter, sans-serif";
+  ctx.fillText(movie.year, 200, 520);
+
+  ctx.fillStyle = "#20d878";
+  ctx.font = "800 14px Inter, sans-serif";
+  ctx.fillText("RUTA A DOOMSDAY", 200, 552);
 
   return canvas.toDataURL("image/png");
 }
 
-// 1) TVMaze API (para series)
-async function fetchFromTVMaze(movie) {
-  const url = `https://api.tvmaze.com/singlesearch/shows?q=${encodeURIComponent(movie.searchQuery)}`;
-  const res = await fetch(url);
-  if (!res.ok) return null;
-  const data = await res.json();
-  if (data && data.image) {
-    return (data.image.original || data.image.medium || "").replace(/^http:/, "https:");
-  }
-  return null;
-}
+async function resolveFallbackPoster(movie, index, img) {
+  if (img.dataset.fallbackDone) return;
+  img.dataset.fallbackDone = "1";
 
-// 2) iTunes Search API (600x900bb para películas y respaldo de series)
-async function fetchFromITunes(movie) {
-  const entity = movie.type === "Serie" ? "tvSeason" : "movie";
-  const media = movie.type === "Serie" ? "tvShow" : "movie";
-  const url = `https://itunes.apple.com/search?term=${encodeURIComponent(movie.searchQuery)}&media=${media}&entity=${entity}&country=US&limit=8`;
-  const res = await fetch(url);
-  if (!res.ok) return null;
-  const data = await res.json();
-  if (!data || !Array.isArray(data.results) || !data.results.length) return null;
-
-  const targetTitle = movie.searchQuery.toLowerCase().replace(/[^a-z0-9]/g, "");
-
-  let best = data.results.find(r => {
-    const name = (r.trackName || r.collectionName || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-    const year = r.releaseDate ? new Date(r.releaseDate).getFullYear() : null;
-    return (name === targetTitle || name.includes(targetTitle)) &&
-           (!movie.releaseYear || !year || Math.abs(year - movie.releaseYear) <= 1);
-  });
-
-  if (!best) {
-    best = data.results.find(r => {
-      const name = (r.trackName || r.collectionName || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-      return name.includes(targetTitle) || targetTitle.includes(name);
-    });
-  }
-
-// Orquestador en cascada con caché y deduplicación (APIs de respaldo)
-async function resolveFallbackPosterUrl(movie, index) {
-  const cacheKey = movie.title;
-  if (posterCache.has(cacheKey)) {
-    return posterCache.get(cacheKey);
-  }
-  if (pendingRequests.has(cacheKey)) {
-    return pendingRequests.get(cacheKey);
-  }
-
-  const promise = (async () => {
-    let url = null;
-    try {
-      if (movie.type === "Serie") {
-        url = await fetchFromTVMaze(movie);
-        if (!url) url = await fetchFromITunes(movie);
-        if (!url) url = await fetchFromWikipedia(movie);
-      } else {
-        url = await fetchFromITunes(movie);
-        if (!url) url = await fetchFromWikipedia(movie);
+  try {
+    if (movie.type === "Serie") {
+      const res = await fetch("https://api.tvmaze.com/singlesearch/shows?q=" + encodeURIComponent(movie.searchEn));
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.image && (data.image.original || data.image.medium)) {
+          img.src = data.image.original || data.image.medium;
+          return;
+        }
       }
-    } catch (e) {
-      url = null;
+    } else {
+      const res = await fetch("https://itunes.apple.com/search?media=movie&limit=1&term=" + encodeURIComponent(movie.searchEn));
+      if (res.ok) {
+        const data = await res.json();
+        if (data.results && data.results[0] && data.results[0].artworkUrl100) {
+          img.src = data.results[0].artworkUrl100.replace("100x100bb", "600x900bb");
+          return;
+        }
+      }
     }
+  } catch (e) {}
 
-    if (!url) {
-      url = generateStylizedPoster(movie, index);
-    }
-
-    posterCache.set(cacheKey, url);
-    pendingRequests.delete(cacheKey);
-    return url;
-  })();
-
-  pendingRequests.set(cacheKey, promise);
-  return promise;
+  img.src = createCanvasPoster(movie, index);
 }
 
-async function loadPoster(movie, index, img) {
-  img.classList.add("loading-shimmer");
-  img.referrerPolicy = "no-referrer";
-
-  // Si ya hay una URL verificada en caché para esta sesión, usarla de inmediato
-  if (posterCache.has(movie.title)) {
-    img.onload = () => img.classList.remove("loading-shimmer");
-    img.src = posterCache.get(movie.title);
-    img.alt = "Portada de " + movie.title;
-    return;
-  }
-
-  // Nivel 1: Intentar cargar primero el póster oficial directo del CDN de Marvel
-  if (movie.marvelPoster) {
-    img.onload = () => {
-      posterCache.set(movie.title, movie.marvelPoster);
-      img.classList.remove("loading-shimmer");
-    };
-    img.onerror = async () => {
-      // Si el CDN oficial no responde o aún no existe el asset, activar cascada TVMaze -> iTunes -> Wikipedia -> Canvas
-      img.onerror = () => {
-        const canvasFallback = generateStylizedPoster(movie, index);
-        posterCache.set(movie.title, canvasFallback);
-        img.src = canvasFallback;
-        img.classList.remove("loading-shimmer");
-      };
-      const fallbackUrl = await resolveFallbackPosterUrl(movie, index);
-      img.src = fallbackUrl;
-    };
-    img.src = movie.marvelPoster;
-    img.alt = "Portada oficial de " + movie.title;
-    return;
-  }
-
-  // Fallback directo si no tuviera marvelPoster definido
-  const url = await resolveFallbackPosterUrl(movie, index);
-  img.onload = () => img.classList.remove("loading-shimmer");
-  img.onerror = () => {
-    const canvasFallback = generateStylizedPoster(movie, index);
-    posterCache.set(movie.title, canvasFallback);
-    img.src = canvasFallback;
-    img.classList.remove("loading-shimmer");
-  };
-  img.src = url;
-  img.alt = "Portada de " + movie.title;
+function setFilter(type, value, button) {
+  filters[type] = value;
+  button.parentElement.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+  button.classList.add("active");
+  render();
 }
 
-/* ==========================================================================
-   VISOR LIGHTBOX Y MODAL PERSONALIZADO DE REINICIO
-   ========================================================================== */
-function openPosterModal(movie, imgSrc) {
-  const modal = document.getElementById("posterModal");
-  document.getElementById("lightboxImg").src = imgSrc;
-  document.getElementById("lightboxTitle").textContent = movie.title;
-  document.getElementById("lightboxSub").textContent = `${movie.type} • ${movie.year} • ${movie.importance}`;
-  modal.classList.add("open");
+function toggleWatched(index) {
+  if (watched.has(index)) watched.delete(index);
+  else watched.add(index);
+  save();
+  render();
 }
 
-function closePosterModal() {
-  document.getElementById("posterModal").classList.remove("open");
+function openLightbox(src, title, sub) {
+  document.getElementById("lightboxImg").src = src;
+  document.getElementById("lightboxTitle").textContent = title;
+  document.getElementById("lightboxSub").textContent = sub;
+  document.getElementById("lightboxModal").classList.add("open");
+}
+
+function closeLightbox() {
+  document.getElementById("lightboxModal").classList.remove("open");
 }
 
 function openResetModal() {
@@ -1144,73 +937,15 @@ function closeResetModal() {
   document.getElementById("resetModal").classList.remove("open");
 }
 
-function confirmResetProgress() {
+function confirmReset() {
   watched.clear();
   save();
   closeResetModal();
   render();
 }
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    closePosterModal();
-    closeResetModal();
-  }
-});
-
-/* ==========================================================================
-   FILTROS, BÚSQUEDA Y RENDERIZADO
-   ========================================================================== */
-function setFilter(type, value, button) {
-  filters[type] = value;
-  button.parentElement.querySelectorAll("button").forEach(b => b.classList.remove("active"));
-  button.classList.add("active");
-  render();
-}
-
-function handleSearchInput() {
-  const val = document.getElementById("search").value;
-  document.getElementById("clearSearchBtn").style.display = val.trim() ? "flex" : "none";
-  render();
-}
-
-function clearSearch() {
-  const input = document.getElementById("search");
-  input.value = "";
-  document.getElementById("clearSearchBtn").style.display = "none";
-  render();
-  input.focus();
-}
-
-function resetAllFilters() {
-  filters = { era: "all", importance: "all", status: "all" };
-  document.getElementById("search").value = "";
-  document.getElementById("clearSearchBtn").style.display = "none";
-
-  document.querySelectorAll(".buttons").forEach(group => {
-    group.querySelectorAll("button").forEach(btn => {
-      btn.classList.toggle("active", btn.dataset.val === "all");
-    });
-  });
-
-  render();
-}
-
-function toggleWatched(index) {
-  if (watched.has(index)) {
-    watched.delete(index);
-  } else {
-    watched.add(index);
-  }
-  save();
-  render();
-}
-
 function render() {
   const query = document.getElementById("search").value.toLowerCase().trim();
-  const isFiltered = filters.era !== "all" || filters.importance !== "all" || filters.status !== "all" || query !== "";
-
-  document.getElementById("resetFiltersBtn").style.display = isFiltered ? "inline-block" : "none";
 
   const filtered = movies
     .map((movie, index) => ({ ...movie, index }))
@@ -1229,11 +964,8 @@ function render() {
   const list = document.getElementById("list");
   list.innerHTML = "";
 
-  document.getElementById("results").textContent =
-    `Mostrando ${filtered.length} de ${movies.length} entregas`;
-
-  document.getElementById("empty").style.display =
-    filtered.length ? "none" : "block";
+  document.getElementById("results").textContent = `Mostrando ${filtered.length} de ${movies.length} entregas`;
+  document.getElementById("empty").style.display = filtered.length ? "none" : "block";
 
   ["era1", "era2", "era3"].forEach(era => {
     const items = filtered.filter(m => m.era === era);
@@ -1242,37 +974,25 @@ function render() {
     const section = document.createElement("section");
     section.className = "era-section";
 
-    const eraCompleted = items.filter(m => watched.has(m.index)).length;
-
     const heading = document.createElement("div");
     heading.className = "era-heading";
-    heading.innerHTML = `
-      <div>
-        <h2>${eras[era].title}</h2>
-        <p>${eras[era].subtitle}</p>
-      </div>
-      <span class="era-counter">${eraCompleted} / ${items.length} vistas</span>
-    `;
+    heading.innerHTML = `<h2>${eras[era].title}</h2><p>${eras[era].subtitle}</p>`;
 
     const cards = document.createElement("div");
     cards.className = "cards";
 
     items.forEach(movie => {
       const done = watched.has(movie.index);
-      const isFinal = movie.type === "Evento Final";
-
       const card = document.createElement("article");
-      card.className = "card" + (isFinal ? " final-card" : "") + (done ? " watched" : "");
+      card.className = "card" + (done ? " watched" : "");
 
       const poster = document.createElement("img");
-      poster.className = "poster loading-shimmer";
+      poster.className = "poster";
+      poster.alt = "Póster de " + movie.title;
       poster.referrerPolicy = "no-referrer";
-      poster.alt = "Cargando portada de " + movie.title;
-      poster.loading = "lazy";
-      poster.title = "Haz clic para ampliar la portada";
-      poster.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-      poster.onclick = () => openPosterModal(movie, poster.src);
-      loadPoster(movie, movie.index, poster);
+      poster.src = movie.poster;
+      poster.onerror = () => resolveFallbackPoster(movie, movie.index, poster);
+      poster.onclick = () => openLightbox(poster.src, movie.title, `${movie.type} • ${movie.year}`);
 
       const content = document.createElement("div");
       content.className = "card-content";
@@ -1288,7 +1008,7 @@ function render() {
       meta.className = "meta";
 
       const type = document.createElement("span");
-      type.className = "tag" + (movie.type === "Serie" ? " series" : "");
+      type.className = "tag";
       type.textContent = movie.type;
 
       const year = document.createElement("span");
@@ -1296,12 +1016,9 @@ function render() {
       year.textContent = movie.year;
 
       const importance = document.createElement("span");
-      let impClass = "recommended";
-      if (movie.importance === "Imprescindible") impClass = "important";
-      else if (movie.importance === "Muy Importante") impClass = "muy-importante";
-      else if (movie.importance === "Evento Principal") impClass = "final";
-
-      importance.className = "tag " + impClass;
+      importance.className = "tag " +
+        (movie.importance === "Imprescindible" ? "important" :
+         movie.importance === "Evento Principal" ? "final" : "recommended");
       importance.textContent = movie.importance;
 
       meta.append(type, year, importance);
@@ -1328,9 +1045,8 @@ function render() {
 }
 
 window.addEventListener("scroll", () => {
-  document.getElementById("topButton").style.display =
-    window.scrollY > 380 ? "flex" : "none";
-}, { passive: true });
+  document.getElementById("topButton").style.display = window.scrollY > 400 ? "block" : "none";
+});
 
 render();
 </script>
