@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -782,7 +783,7 @@ footer {
 <!-- Visor Lightbox para ampliar portadas -->
 <div id="posterModal" class="modal-overlay" onclick="if(event.target===this) closePosterModal()">
   <div class="lightbox-box">
-    <img id="lightboxImg" class="lightbox-img" src="" alt="Portada ampliada">
+    <img id="lightboxImg" class="lightbox-img" referrerpolicy="no-referrer" src="" alt="Portada ampliada">
     <h3 id="lightboxTitle" class="lightbox-title"></h3>
     <p id="lightboxSub" class="lightbox-sub"></p>
     <button class="modal-close-btn" onclick="closePosterModal()">Cerrar vista previa</button>
@@ -817,36 +818,36 @@ const eras = {
   }
 };
 
-// Catálogo cronológico exacto de las 28 entregas (#01 a #28)
+// Catálogo cronológico exacto de las 28 entregas (#01 a #28) con pósteres oficiales del CDN de Marvel
 const movies = [
-  { title: "Capitán América: El Primer Vengador", year: "1943-1945", releaseYear: 2011, era: "era1", type: "Película", importance: "Recomendado", searchQuery: "Captain America: The First Avenger", wiki: "Captain America: The First Avenger", synopsis: "Origen de Steve Rogers, el suero del supersoldado y el Teseracto." },
-  { title: "Los 4 Fantásticos: Primeros Pasos", year: "Años 60", releaseYear: 2025, era: "era1", type: "Película", importance: "Imprescindible", searchQuery: "The Fantastic Four: First Steps", wiki: "The Fantastic Four: First Steps", synopsis: "Presenta a Reed Richards, Sue Storm, Johnny Storm y Ben Grimm en un mundo retrofuturista y anticipa a Doctor Doom." },
-  { title: "Capitana Marvel", year: "1995", releaseYear: 2019, era: "era1", type: "Película", importance: "Recomendado", searchQuery: "Captain Marvel", wiki: "Captain Marvel (film)", synopsis: "Origen de Carol Danvers, Nick Fury joven y la llegada de los Skrulls a la Tierra." },
-  { title: "X-Men (2000)", year: "Universo Fox", releaseYear: 2000, era: "era1", type: "Película", importance: "Muy Importante", searchQuery: "X-Men", wiki: "X-Men (film)", synopsis: "Presenta a Charles Xavier, Magneto, Cíclope y los mutantes clásicos." },
-  { title: "X-Men 2 (X2)", year: "Universo Fox", releaseYear: 2003, era: "era1", type: "Película", importance: "Muy Importante", searchQuery: "X2: X-Men United", wiki: "X2 (film)", synopsis: "Profundiza en Rondador Nocturno, Wolverine y la alianza temporal entre X-Men y Magneto." },
-  { title: "X-Men: Días del Futuro Pasado", year: "1973 / 2023", releaseYear: 2014, era: "era1", type: "Película", importance: "Imprescindible", searchQuery: "X-Men: Days of Future Past", wiki: "X-Men: Days of Future Past", synopsis: "Viajes en el tiempo y reescritura de la línea temporal mutante." },
-  { title: "Iron Man", year: "2008", releaseYear: 2008, era: "era1", type: "Película", importance: "Imprescindible", searchQuery: "Iron Man", wiki: "Iron Man (2008 film)", synopsis: "El inicio del UCM y la historia de Tony Stark, esencial por su conexión visual con Doctor Doom." },
-  { title: "Los Vengadores", year: "2012", releaseYear: 2012, era: "era1", type: "Película", importance: "Recomendado", searchQuery: "Marvel's The Avengers", wiki: "The Avengers (2012 film)", synopsis: "Primera reunión de los héroes más poderosos de la Tierra frente a Loki." },
-  { title: "Vengadores: La Era de Ultrón", year: "2015", releaseYear: 2015, era: "era1", type: "Película", importance: "Muy Importante", searchQuery: "Avengers: Age of Ultron", wiki: "Avengers: Age of Ultron", synopsis: "Introduce a Wanda Maximoff y Visión, y explora los temores de Tony Stark sobre amenazas cósmicas." },
-  { title: "Capitán América: Civil War", year: "2016", releaseYear: 2016, era: "era1", type: "Película", importance: "Recomendado", searchQuery: "Captain America: Civil War", wiki: "Captain America: Civil War", synopsis: "Fractura a los Vengadores y presenta a Spider-Man y Black Panther." },
-  { title: "Doctor Strange", year: "2016", releaseYear: 2016, era: "era1", type: "Película", importance: "Muy Importante", searchQuery: "Doctor Strange", wiki: "Doctor Strange (2016 film)", synopsis: "Introduce las artes místicas y las primeras advertencias sobre el multiverso." },
-  { title: "Vengadores: Infinity War", year: "2018", releaseYear: 2018, era: "era1", type: "Película", importance: "Imprescindible", searchQuery: "Avengers: Infinity War", wiki: "Avengers: Infinity War", synopsis: "La batalla contra Thanos por las Gemas del Infinito y el chasquido." },
-  { title: "Vengadores: Endgame", year: "2018 / 2023", releaseYear: 2019, era: "era1", type: "Película", importance: "Imprescindible", searchQuery: "Avengers: Endgame", wiki: "Avengers: Endgame", synopsis: "El atraco en el tiempo, el sacrificio de Tony Stark y el retiro de Steve Rogers." },
-  { title: "Loki (Temporadas 1 y 2)", year: "Fuera del tiempo", releaseYear: 2021, era: "era2", type: "Serie", importance: "Imprescindible", searchQuery: "Loki", wiki: "Loki (TV series)", synopsis: "Explica la AVT, las líneas temporales ramificadas y deja a Loki sosteniendo todo el multiverso." },
-  { title: "WandaVision", year: "2023", releaseYear: 2021, era: "era2", type: "Serie", importance: "Muy Importante", searchQuery: "WandaVision", wiki: "WandaVision", synopsis: "Wanda se convierte en la Bruja Escarlata, obtiene el Darkhold y nace Visión Blanco." },
-  { title: "Falcon y el Soldado de Invierno", year: "2024", releaseYear: 2021, era: "era2", type: "Serie", importance: "Muy Importante", searchQuery: "The Falcon and the Winter Soldier", wiki: "The Falcon and the Winter Soldier", synopsis: "Sam Wilson asume el escudo del Capitán América y se presenta a U.S. Agent." },
-  { title: "Shang-Chi y la Leyenda de los Diez Anillos", year: "2024", releaseYear: 2021, era: "era2", type: "Película", importance: "Muy Importante", searchQuery: "Shang-Chi and the Legend of the Ten Rings", wiki: "Shang-Chi and the Legend of the Ten Rings", synopsis: "Presenta a Shang-Chi y revela la misteriosa baliza dentro de los Diez Anillos." },
-  { title: "Spider-Man: No Way Home", year: "2024", releaseYear: 2021, era: "era2", type: "Película", importance: "Muy Importante", searchQuery: "Spider-Man: No Way Home", wiki: "Spider-Man: No Way Home", synopsis: "Una gran ruptura multiversal y el hechizo que hace olvidar al mundo quién es Peter Parker." },
-  { title: "Doctor Strange en el Multiverso de la Locura", year: "2024", releaseYear: 2022, era: "era2", type: "Película", importance: "Imprescindible", searchQuery: "Doctor Strange in the Multiverse of Madness", wiki: "Doctor Strange in the Multiverse of Madness", synopsis: "Introduce oficialmente las incursiones entre universos y a los Illuminati." },
-  { title: "Black Panther: Wakanda Forever", year: "2025", releaseYear: 2022, era: "era2", type: "Película", importance: "Muy Importante", searchQuery: "Black Panther: Wakanda Forever", wiki: "Black Panther: Wakanda Forever", synopsis: "Shuri asume el manto de Black Panther y se presenta a Namor y Talokan." },
-  { title: "Ant-Man y la Avispa: Quantumanía", year: "2026", releaseYear: 2023, era: "era2", type: "Película", importance: "Recomendado", searchQuery: "Ant-Man and the Wasp: Quantumania", wiki: "Ant-Man and the Wasp: Quantumania", synopsis: "Explora el Reino Cuántico y el Consejo de Kangs." },
-  { title: "The Marvels", year: "2026", releaseYear: 2023, era: "era2", type: "Película", importance: "Imprescindible", searchQuery: "The Marvels", wiki: "The Marvels (film)", synopsis: "Monica Rambeau queda atrapada en el universo paralelo de los X-Men junto a Bestia." },
-  { title: "Deadpool & Wolverine", year: "2026", releaseYear: 2024, era: "era2", type: "Película", importance: "Imprescindible", searchQuery: "Deadpool & Wolverine", wiki: "Deadpool & Wolverine", synopsis: "Conecta el universo mutante de Fox con la AVT, los seres ancla y el Vacío." },
-  { title: "Capitán América: Un Nuevo Mundo", year: "2027", releaseYear: 2025, era: "era3", type: "Película", importance: "Imprescindible", searchQuery: "Captain America: Brave New World", wiki: "Captain America: Brave New World", synopsis: "Sam Wilson reconstruye el legado del Capitán América y reorganiza a los Vengadores." },
-  { title: "Thunderbolts*", year: "2027", releaseYear: 2025, era: "era3", type: "Película", importance: "Imprescindible", searchQuery: "Thunderbolts*", wiki: "Thunderbolts* (film)", synopsis: "Reúne a Yelena, Bucky, Red Guardian, Ghost, U.S. Agent y Sentry; conecta directo con Los 4 Fantásticos." },
-  { title: "Spider-Man: Brand New Day", year: "2028", releaseYear: 2026, era: "era3", type: "Película", importance: "Muy Importante", searchQuery: "Spider-Man: Brand New Day", wiki: "Spider-Man: Brand New Day", synopsis: "La nueva vida de Peter Parker en Nueva York después del hechizo de olvido." },
-  { title: "VisionQuest", year: "2028", releaseYear: 2026, era: "era3", type: "Serie", importance: "Muy Importante", searchQuery: "Vision Quest", wiki: "VisionQuest (TV series)", synopsis: "Sigue a Visión Blanco recuperando sus recuerdos y el regreso de Ultrón." },
-  { title: "AVENGERS: DOOMSDAY", year: "Clímax multiversal", releaseYear: 2026, era: "era3", type: "Evento Final", importance: "Evento Principal", searchQuery: "Avengers: Doomsday", wiki: "Avengers: Doomsday", synopsis: "El enfrentamiento definitivo entre los Vengadores, Thunderbolts, Los 4 Fantásticos y los X-Men contra Victor Von Doom." }
+  { title: "Capitán América: El Primer Vengador", year: "1943-1945", releaseYear: 2011, era: "era1", type: "Película", importance: "Recomendado", marvelPoster: "https://cdn.marvel.com/content/1x/captainamericathefirstavenger_lob_crd_01.jpg", searchQuery: "Captain America: The First Avenger", wiki: "Captain America: The First Avenger", synopsis: "Origen de Steve Rogers, el suero del supersoldado y el Teseracto." },
+  { title: "Los 4 Fantásticos: Primeros Pasos", year: "Años 60", releaseYear: 2025, era: "era1", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/thefantasticfourfirststeps_lob_crd_02.jpg", searchQuery: "The Fantastic Four: First Steps", wiki: "The Fantastic Four: First Steps", synopsis: "Presenta a Reed Richards, Sue Storm, Johnny Storm y Ben Grimm en un mundo retrofuturista y anticipa a Doctor Doom." },
+  { title: "Capitana Marvel", year: "1995", releaseYear: 2019, era: "era1", type: "Película", importance: "Recomendado", marvelPoster: "https://cdn.marvel.com/content/1x/captainmarvel_lob_crd_06.jpg", searchQuery: "Captain Marvel", wiki: "Captain Marvel (film)", synopsis: "Origen de Carol Danvers, Nick Fury joven y la llegada de los Skrulls a la Tierra." },
+  { title: "X-Men (2000)", year: "Universo Fox", releaseYear: 2000, era: "era1", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/x-men_lob_crd_01.jpg", searchQuery: "X-Men", wiki: "X-Men (film)", synopsis: "Presenta a Charles Xavier, Magneto, Cíclope y los mutantes clásicos." },
+  { title: "X-Men 2 (X2)", year: "Universo Fox", releaseYear: 2003, era: "era1", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/x2_lob_crd_01.jpg", searchQuery: "X2: X-Men United", wiki: "X2 (film)", synopsis: "Profundiza en Rondador Nocturno, Wolverine y la alianza temporal entre X-Men y Magneto." },
+  { title: "X-Men: Días del Futuro Pasado", year: "1973 / 2023", releaseYear: 2014, era: "era1", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/x-mendaysoffuturepast_lob_crd_01.jpg", searchQuery: "X-Men: Days of Future Past", wiki: "X-Men: Days of Future Past", synopsis: "Viajes en el tiempo y reescritura de la línea temporal mutante." },
+  { title: "Iron Man", year: "2008", releaseYear: 2008, era: "era1", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/ironman_lob_crd_01_3.jpg", searchQuery: "Iron Man", wiki: "Iron Man (2008 film)", synopsis: "El inicio del UCM y la historia de Tony Stark, esencial por su conexión visual con Doctor Doom." },
+  { title: "Los Vengadores", year: "2012", releaseYear: 2012, era: "era1", type: "Película", importance: "Recomendado", marvelPoster: "https://cdn.marvel.com/content/1x/theavengers_lob_crd_03.jpg", searchQuery: "Marvel's The Avengers", wiki: "The Avengers (2012 film)", synopsis: "Primera reunión de los héroes más poderosos de la Tierra frente a Loki." },
+  { title: "Vengadores: La Era de Ultrón", year: "2015", releaseYear: 2015, era: "era1", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/avengersageofultron_lob_crd_03.jpg", searchQuery: "Avengers: Age of Ultron", wiki: "Avengers: Age of Ultron", synopsis: "Introduce a Wanda Maximoff y Visión, y explora los temores de Tony Stark sobre amenazas cósmicas." },
+  { title: "Capitán América: Civil War", year: "2016", releaseYear: 2016, era: "era1", type: "Película", importance: "Recomendado", marvelPoster: "https://cdn.marvel.com/content/1x/captainamericacivilwar_lob_crd_01_9.jpg", searchQuery: "Captain America: Civil War", wiki: "Captain America: Civil War", synopsis: "Fractura a los Vengadores y presenta a Spider-Man y Black Panther." },
+  { title: "Doctor Strange", year: "2016", releaseYear: 2016, era: "era1", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/doctorstrange_lob_crd_01_6.jpg", searchQuery: "Doctor Strange", wiki: "Doctor Strange (2016 film)", synopsis: "Introduce las artes místicas y las primeras advertencias sobre el multiverso." },
+  { title: "Vengadores: Infinity War", year: "2018", releaseYear: 2018, era: "era1", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/avengersinfinitywar_lob_crd_02_1.jpg", searchQuery: "Avengers: Infinity War", wiki: "Avengers: Infinity War", synopsis: "La batalla contra Thanos por las Gemas del Infinito y el chasquido." },
+  { title: "Vengadores: Endgame", year: "2018 / 2023", releaseYear: 2019, era: "era1", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/avengersendgame_lob_crd_05_2.jpg", searchQuery: "Avengers: Endgame", wiki: "Avengers: Endgame", synopsis: "El atraco en el tiempo, el sacrificio de Tony Stark y el retiro de Steve Rogers." },
+  { title: "Loki (Temporadas 1 y 2)", year: "Fuera del tiempo", releaseYear: 2021, era: "era2", type: "Serie", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/lokis2_lob_crd_04.jpg", searchQuery: "Loki", wiki: "Loki (TV series)", synopsis: "Explica la AVT, las líneas temporales ramificadas y deja a Loki sosteniendo todo el multiverso." },
+  { title: "WandaVision", year: "2023", releaseYear: 2021, era: "era2", type: "Serie", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/wandavision_lob_crd_06.jpg", searchQuery: "WandaVision", wiki: "WandaVision", synopsis: "Wanda se convierte en la Bruja Escarlata, obtiene el Darkhold y nace Visión Blanco." },
+  { title: "Falcon y el Soldado de Invierno", year: "2024", releaseYear: 2021, era: "era2", type: "Serie", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/falcws_lob_crd_03.jpg", searchQuery: "The Falcon and the Winter Soldier", wiki: "The Falcon and the Winter Soldier", synopsis: "Sam Wilson asume el escudo del Capitán América y se presenta a U.S. Agent." },
+  { title: "Shang-Chi y la Leyenda de los Diez Anillos", year: "2024", releaseYear: 2021, era: "era2", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/shangchi_lob_crd_07.jpg", searchQuery: "Shang-Chi and the Legend of the Ten Rings", wiki: "Shang-Chi and the Legend of the Ten Rings", synopsis: "Presenta a Shang-Chi y revela la misteriosa baliza dentro de los Diez Anillos." },
+  { title: "Spider-Man: No Way Home", year: "2024", releaseYear: 2021, era: "era2", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/spider-mannowayhome_lob_crd_03.jpg", searchQuery: "Spider-Man: No Way Home", wiki: "Spider-Man: No Way Home", synopsis: "Una gran ruptura multiversal y el hechizo que hace olvidar al mundo quién es Peter Parker." },
+  { title: "Doctor Strange en el Multiverso de la Locura", year: "2024", releaseYear: 2022, era: "era2", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/doctorstrangeinthemultiverseofmadness_lob_crd_02_3.jpg", searchQuery: "Doctor Strange in the Multiverse of Madness", wiki: "Doctor Strange in the Multiverse of Madness", synopsis: "Introduce oficialmente las incursiones entre universos y a los Illuminati." },
+  { title: "Black Panther: Wakanda Forever", year: "2025", releaseYear: 2022, era: "era2", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/blackpantherwakandaforever_lob_crd_06.jpg", searchQuery: "Black Panther: Wakanda Forever", wiki: "Black Panther: Wakanda Forever", synopsis: "Shuri asume el manto de Black Panther y se presenta a Namor y Talokan." },
+  { title: "Ant-Man y la Avispa: Quantumanía", year: "2026", releaseYear: 2023, era: "era2", type: "Película", importance: "Recomendado", marvelPoster: "https://cdn.marvel.com/content/1x/antmanandthewaspquantumania_lob_crd_03.jpg", searchQuery: "Ant-Man and the Wasp: Quantumania", wiki: "Ant-Man and the Wasp: Quantumania", synopsis: "Explora el Reino Cuántico y el Consejo de Kangs." },
+  { title: "The Marvels", year: "2026", releaseYear: 2023, era: "era2", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/themarvels_lob_crd_05.jpg", searchQuery: "The Marvels", wiki: "The Marvels (film)", synopsis: "Monica Rambeau queda atrapada en el universo paralelo de los X-Men junto a Bestia." },
+  { title: "Deadpool & Wolverine", year: "2026", releaseYear: 2024, era: "era2", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/deadpoolandwolverine_lob_crd_03.jpg", searchQuery: "Deadpool & Wolverine", wiki: "Deadpool & Wolverine", synopsis: "Conecta el universo mutante de Fox con la AVT, los seres ancla y el Vacío." },
+  { title: "Capitán América: Un Nuevo Mundo", year: "2027", releaseYear: 2025, era: "era3", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/captainamericabravenewworld_lob_crd_05.jpg", searchQuery: "Captain America: Brave New World", wiki: "Captain America: Brave New World", synopsis: "Sam Wilson reconstruye el legado del Capitán América y reorganiza a los Vengadores." },
+  { title: "Thunderbolts*", year: "2027", releaseYear: 2025, era: "era3", type: "Película", importance: "Imprescindible", marvelPoster: "https://cdn.marvel.com/content/1x/thunderbolts_lob_crd_03.jpg", searchQuery: "Thunderbolts*", wiki: "Thunderbolts* (film)", synopsis: "Reúne a Yelena, Bucky, Red Guardian, Ghost, U.S. Agent y Sentry; conecta directo con Los 4 Fantásticos." },
+  { title: "Spider-Man: Brand New Day", year: "2028", releaseYear: 2026, era: "era3", type: "Película", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/spider-manbrandnewday_lob_crd_01.jpg", searchQuery: "Spider-Man: Brand New Day", wiki: "Spider-Man: Brand New Day", synopsis: "La nueva vida de Peter Parker en Nueva York después del hechizo de olvido." },
+  { title: "VisionQuest", year: "2028", releaseYear: 2026, era: "era3", type: "Serie", importance: "Muy Importante", marvelPoster: "https://cdn.marvel.com/content/1x/visionquest_lob_crd_01.jpg", searchQuery: "Vision Quest", wiki: "VisionQuest (TV series)", synopsis: "Sigue a Visión Blanco recuperando sus recuerdos y el regreso de Ultrón." },
+  { title: "AVENGERS: DOOMSDAY", year: "Clímax multiversal", releaseYear: 2026, era: "era3", type: "Evento Final", importance: "Evento Principal", marvelPoster: "https://cdn.marvel.com/content/1x/avengersdoomsday_lob_crd_01.jpg", searchQuery: "Avengers: Doomsday", wiki: "Avengers: Doomsday", synopsis: "El enfrentamiento definitivo entre los Vengadores, Thunderbolts, Los 4 Fantásticos y los X-Men contra Victor Von Doom." }
 ];
 
 const STORAGE_KEY = "doomsday_progress";
@@ -872,7 +873,8 @@ function updateProgress() {
 }
 
 /* ==========================================================================
-   MOTOR AVANZADO DE PORTADAS EN CASCADA (TVMaze -> iTunes -> Wikipedia -> Canvas)
+   MOTOR AVANZADO DE PORTADAS EN CASCADA
+   (Marvel CDN Oficial -> TVMaze -> iTunes -> Wikipedia -> Canvas HD)
    ========================================================================== */
 const posterCache = new Map();
 const pendingRequests = new Map();
@@ -1034,37 +1036,8 @@ async function fetchFromITunes(movie) {
     });
   }
 
-  if (best && best.artworkUrl100) {
-    return best.artworkUrl100.replace(/100x100bb\.(jpg|png)$/i, "600x900bb.$1");
-  }
-  return null;
-}
-
-// 3) Wikipedia API como respaldo secundario
-async function fetchFromWikipedia(movie) {
-  const api = "https://en.wikipedia.org/w/api.php?" + new URLSearchParams({
-    action: "query",
-    format: "json",
-    generator: "search",
-    gsrsearch: `${movie.wiki} poster`,
-    gsrlimit: "3",
-    prop: "pageimages",
-    piprop: "thumbnail",
-    pithumbsize: "600",
-    origin: "*"
-  });
-  const res = await fetch(api);
-  if (!res.ok) return null;
-  const data = await res.json();
-  if (!data || !data.query || !data.query.pages) return null;
-
-  const pages = Object.values(data.query.pages);
-  const withThumb = pages.find(p => p.thumbnail && p.thumbnail.source);
-  return withThumb ? withThumb.thumbnail.source : null;
-}
-
-// Orquestador en cascada con caché y deduplicación
-async function resolvePosterUrl(movie, index) {
+// Orquestador en cascada con caché y deduplicación (APIs de respaldo)
+async function resolveFallbackPosterUrl(movie, index) {
   const cacheKey = movie.title;
   if (posterCache.has(cacheKey)) {
     return posterCache.get(cacheKey);
@@ -1103,18 +1076,47 @@ async function resolvePosterUrl(movie, index) {
 
 async function loadPoster(movie, index, img) {
   img.classList.add("loading-shimmer");
-  const url = await resolvePosterUrl(movie, index);
+  img.referrerPolicy = "no-referrer";
 
-  img.onload = () => {
-    img.classList.remove("loading-shimmer");
-  };
+  // Si ya hay una URL verificada en caché para esta sesión, usarla de inmediato
+  if (posterCache.has(movie.title)) {
+    img.onload = () => img.classList.remove("loading-shimmer");
+    img.src = posterCache.get(movie.title);
+    img.alt = "Portada de " + movie.title;
+    return;
+  }
+
+  // Nivel 1: Intentar cargar primero el póster oficial directo del CDN de Marvel
+  if (movie.marvelPoster) {
+    img.onload = () => {
+      posterCache.set(movie.title, movie.marvelPoster);
+      img.classList.remove("loading-shimmer");
+    };
+    img.onerror = async () => {
+      // Si el CDN oficial no responde o aún no existe el asset, activar cascada TVMaze -> iTunes -> Wikipedia -> Canvas
+      img.onerror = () => {
+        const canvasFallback = generateStylizedPoster(movie, index);
+        posterCache.set(movie.title, canvasFallback);
+        img.src = canvasFallback;
+        img.classList.remove("loading-shimmer");
+      };
+      const fallbackUrl = await resolveFallbackPosterUrl(movie, index);
+      img.src = fallbackUrl;
+    };
+    img.src = movie.marvelPoster;
+    img.alt = "Portada oficial de " + movie.title;
+    return;
+  }
+
+  // Fallback directo si no tuviera marvelPoster definido
+  const url = await resolveFallbackPosterUrl(movie, index);
+  img.onload = () => img.classList.remove("loading-shimmer");
   img.onerror = () => {
-    const fallback = generateStylizedPoster(movie, index);
-    posterCache.set(movie.title, fallback);
-    img.src = fallback;
+    const canvasFallback = generateStylizedPoster(movie, index);
+    posterCache.set(movie.title, canvasFallback);
+    img.src = canvasFallback;
     img.classList.remove("loading-shimmer");
   };
-
   img.src = url;
   img.alt = "Portada de " + movie.title;
 }
@@ -1264,6 +1266,7 @@ function render() {
 
       const poster = document.createElement("img");
       poster.className = "poster loading-shimmer";
+      poster.referrerPolicy = "no-referrer";
       poster.alt = "Cargando portada de " + movie.title;
       poster.loading = "lazy";
       poster.title = "Haz clic para ampliar la portada";
